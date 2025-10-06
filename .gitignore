@@ -39,3 +39,12 @@
 
 # debug information files
 *.dwo
+
+
+# ROS 2 specific
+log/
+build/
+install/
+
+# VSCode
+.vscode/
