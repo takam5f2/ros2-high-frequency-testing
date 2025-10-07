@@ -25,3 +25,13 @@ timer_driven_listener:
           reliability: reliable
           history: keep_last
           depth: 10000
+
+
+busy_looping_listener:
+  ros__parameters:
+    qos_overrides:
+      '/looping_message':
+        subscription:
+          reliability: reliable
+          history: keep_last
+          depth: 10000

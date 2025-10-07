@@ -41,6 +41,12 @@ add_executable(timer_driven_listener_node src/timer_driven_listener_node.cpp)
 ament_target_dependencies(timer_driven_listener_node rclcpp)
 target_link_libraries(timer_driven_listener_node timer_driven_listener)
 
+# busy_looping_listener
+add_library(busy_looping_listener SHARED src/busy_looping_listener.cpp)
+ament_target_dependencies(busy_looping_listener rclcpp std_msgs)
+add_executable(busy_looping_listener_node src/busy_looping_listener_node.cpp)
+ament_target_dependencies(busy_looping_listener_node rclcpp)
+target_link_libraries(busy_looping_listener_node busy_looping_listener)
 
 # ノードのインストール
 install(TARGETS
@@ -50,6 +56,8 @@ install(TARGETS
   event_driven_listener_node
   timer_driven_listener
   timer_driven_listener_node
+  busy_looping_listener
+  busy_looping_listener_node
   DESTINATION lib/${PROJECT_NAME})
 
 

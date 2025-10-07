@@ -26,6 +26,5 @@ int main(int argc, char ** argv) {
       last_time = std::chrono::steady_clock::now();
       node->publish_message();
     }
-
   }
 }
