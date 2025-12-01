@@ -22,10 +22,19 @@ namespace ros2_dummy_diagnostics_publisher {
   }
 
   void ROS2DummyDiagnosticsPublisher::run_dummy_diagnostic_task(diagnostic_updater::DiagnosticStatusWrapper & stat) {
+
+    per_second_message_count_ += 1;
     diagnostic_msgs::msg::DiagnosticStatus status;
     status.level = diagnostic_msgs::msg::DiagnosticStatus::OK;
-    stat.addf("yaw rate from imu", "%.2f", 0.0);
+    stat.addf("yaw rate from imu", "%.2f", static_cast<double>(per_second_message_count_));
     stat.addf("yaw rate from twist", "%.2f", frequency_);
     stat.summary(status.level, status.message);
+
+    auto now = std::chrono::steady_clock::now();
+    auto elapsed = now - last_time_;
+    if (elapsed >= std::chrono::seconds(1)) {
+        last_time_ = now;
+        per_second_message_count_ = 0;
+    }
   }
 }

@@ -16,7 +16,9 @@ namespace ros2_dummy_diagnostics_publisher {
   private:
       diagnostic_updater::Updater updater_;
       double frequency_;
-      void run_dummy_diagnostic_task(diagnostic_updater::DiagnosticStatusWrapper & stat);
+      unsigned int per_second_message_count_;
+      std::chrono::steady_clock::time_point last_time_;
+      void run_dummy_diagnostic_task(diagnostic_updater::DiagnosticStatusWrapper &stat);
   };
 }
 
