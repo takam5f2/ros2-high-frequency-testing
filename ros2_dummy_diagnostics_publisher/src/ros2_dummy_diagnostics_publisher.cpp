@@ -26,7 +26,7 @@ namespace ros2_dummy_diagnostics_publisher {
     per_second_message_count_ += 1;
     diagnostic_msgs::msg::DiagnosticStatus status;
     status.level = diagnostic_msgs::msg::DiagnosticStatus::OK;
-    stat.addf("yaw rate from imu", "%.2f", static_cast<double>(per_second_message_count_));
+    stat.addf("yaw rate from imu", "%.2f", static_cast<double>(previous_second_message_count_));
     stat.addf("yaw rate from twist", "%.2f", frequency_);
     stat.summary(status.level, status.message);
 
@@ -34,6 +34,7 @@ namespace ros2_dummy_diagnostics_publisher {
     auto elapsed = now - last_time_;
     if (elapsed >= std::chrono::seconds(1)) {
         last_time_ = now;
+        previous_second_message_count_ = per_second_message_count_;
         per_second_message_count_ = 0;
     }
   }
