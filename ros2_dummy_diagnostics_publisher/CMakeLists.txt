@@ -27,6 +27,11 @@ ament_target_dependencies(ros2_dummy_diagnostics_publisher_node rclcpp diagnosti
 target_link_libraries(ros2_dummy_diagnostics_publisher_node ros2_dummy_diagnostics_publisher)
 
 
+install(TARGETS
+ ros2_dummy_diagnostics_publisher
+ LIBRARY DESTINATION lib
+)
+
 # ノードのインストール
 install(TARGETS
   ros2_dummy_diagnostics_publisher_node
